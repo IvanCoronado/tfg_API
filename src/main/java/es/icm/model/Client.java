@@ -9,9 +9,13 @@ import javax.persistence.Table;
 public class Client extends IdEntity {
 
 	@Column(name = "name", length = 15)
-	private String name;
+	private String	name;
 	@Column(name = "description", length = 300)
-	private String description;
+	private String	description;
+
+	public Client() {
+		super();
+	}
 
 	public Client(String name, String description) {
 		super();

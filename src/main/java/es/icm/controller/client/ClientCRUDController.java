@@ -28,33 +28,22 @@ import es.icm.dto.out.ClientDTO;
 public class ClientCRUDController {
 
 	@Autowired
-	private ClientManager clientManager;
+	private ClientManager	clientManager;
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	@ApiOperation(value = "Crea un cliente.", notes = "TODO:notes")
-	@ApiResponses(value = {
-			@ApiResponse(code = HttpServletResponse.SC_CREATED, message = "Element created."),
-			@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
-			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
-			@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")
-	})
+	@ApiResponses(value = {@ApiResponse(code = HttpServletResponse.SC_CREATED, message = "Element created."), @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
+			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."), @ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")})
 	public ClientDTO createClient(@Valid @RequestBody CreateClientDTO clientInit, HttpServletResponse response) {
 		ClientDTO client = clientManager.createClient(clientInit);
 		return client;
 	}
 
-	@RequestMapping(value = "{idClient:\\d+}", method = RequestMethod.PUT, consumes = "aplication/json")
+	@RequestMapping(value = "{idClient:\\d+}", method = RequestMethod.PUT, consumes = "application/json")
 	@ApiOperation(value = "Modifica un cliente dado un ID.", notes = "TODO:notes")
-	@ApiResponses(value = {
-			@ApiResponse(code = HttpServletResponse.SC_OK, message = "Found element."),
-			@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
-			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
-			@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")
-	})
-	public ClientDTO updateClient(
-			@PathVariable(value = "idClient") Long idClient,
-			@Valid @RequestBody CreateClientDTO clientInit,
-			HttpServletResponse response) throws IOException {
+	@ApiResponses(value = {@ApiResponse(code = HttpServletResponse.SC_OK, message = "Found element."), @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
+			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."), @ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")})
+	public ClientDTO updateClient(@PathVariable(value = "idClient") Long idClient, @Valid @RequestBody CreateClientDTO clientInit, HttpServletResponse response) throws IOException {
 		try {
 			ClientDTO client = clientManager.updateClient(idClient, clientInit);
 			return client;
@@ -66,14 +55,9 @@ public class ClientCRUDController {
 
 	@RequestMapping(value = "{idClient:\\d+}", method = RequestMethod.DELETE)
 	@ApiOperation(value = "Elimina un cliente dado un ID.", notes = "TODO:notes")
-	@ApiResponses(value = {
-			@ApiResponse(code = HttpServletResponse.SC_OK, message = "Found element."),
-			@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
-			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
-			@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")
-	})
-	public void deleteClient(@PathVariable(value = "idClient") Long idClient, HttpServletResponse response)
-			throws IOException {
+	@ApiResponses(value = {@ApiResponse(code = HttpServletResponse.SC_OK, message = "Found element."), @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
+			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."), @ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")})
+	public void deleteClient(@PathVariable(value = "idClient") Long idClient, HttpServletResponse response) throws IOException {
 
 		try {
 			clientManager.deleteClient(idClient);

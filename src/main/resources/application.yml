@@ -4,11 +4,10 @@ api:
 spring:
 #Base de datos
 # DataSource settings: set here configurations for the database connection
- datasource:
-    
+ datasource:    
   url: jdbc:mysql://localhost:3306/TFG
   username: root
-  password: admin
+  password: dinamic
   driverClassName: com.mysql.jdbc.Driver
  
 # C3P0 connection pool config. 
