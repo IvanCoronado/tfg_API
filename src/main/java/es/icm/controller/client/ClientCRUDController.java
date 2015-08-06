@@ -72,7 +72,13 @@ public class ClientCRUDController {
 			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
 			@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")
 	})
-	public void deleteClient(@PathVariable(value = "idClient") int idClient) {
+	public void deleteClient(@PathVariable(value = "idClient") Long idClient, HttpServletResponse response)
+			throws IOException {
 
+		try {
+			clientManager.deleteClient(idClient);
+		} catch (EntityNotFoundException e) {
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Client not found.");
+		}
 	}
 }

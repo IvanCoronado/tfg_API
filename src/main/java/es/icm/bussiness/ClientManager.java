@@ -58,4 +58,15 @@ public class ClientManager {
 		return new ClientDTO(client);
 	}
 
+	public void deleteClient(Long idClient) {
+		Client client = clientDAO.findById(idClient);
+
+		if (client == null) {
+			throw new EntityNotFoundException();
+		}
+
+		clientDAO.delete(idClient);
+
+	}
+
 }
