@@ -7,7 +7,7 @@ spring:
  datasource:    
   url: jdbc:mysql://localhost:3306/TFG
   username: root
-  password: dinamic
+  password: admin
   driverClassName: com.mysql.jdbc.Driver
  
 # C3P0 connection pool config. 
