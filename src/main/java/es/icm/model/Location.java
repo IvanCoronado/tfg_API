@@ -1,41 +1,47 @@
 package es.icm.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = TableNames.TABLE_LOCATION)
 public class Location extends IdEntity {
 	@Column(name = "name", length = 15)
-	private String	name;
+	private String name;
 
 	@Column(name = "description", length = 300)
-	private String	description;
+	private String description;
 
 	@Column(name = "max_capacity")
-	private int		maxCapacity;
+	private int maxCapacity;
 
 	@Column(name = "address", length = 300)
-	private String	address;
+	private String address;
 
 	@Column(name = "city", length = 15)
-	private String	city;
+	private String city;
 
 	@Column(name = "latitude")
-	private Double	latitude;
+	private Double latitude;
 
 	@Column(name = "longitude")
-	private Double	longitude;
+	private Double longitude;
 
 	@Column(name = "isPublic", columnDefinition = "BIT")
-	private Boolean	isPublic;
+	private Boolean isPublic;
 
 	@ManyToOne
 	@JoinColumn(name = "client_id")
-	private Client	client;
+	private Client client;
+
+	@OneToMany(mappedBy = "location")
+	private List<Device> devices;
 
 	public String getName() {
 		return name;
@@ -109,10 +115,19 @@ public class Location extends IdEntity {
 	}
 
 	/**
-	 * @param client the client to set
+	 * @param client
+	 *            the client to set
 	 */
 	public final void setClient(Client client) {
 		this.client = client;
+	}
+
+	public final List<Device> getDevices() {
+		return devices;
+	}
+
+	public final void setDevices(List<Device> devices) {
+		this.devices = devices;
 	}
 
 }

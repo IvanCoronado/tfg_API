@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +18,10 @@ public class Device extends IdEntity {
 	private EnumDeviceType type;
 	@Column(name = "group_devices", length = 20)
 	private String group;
+
+	@ManyToOne
+	@JoinColumn(name = "location_id")
+	private Location location;
 
 	public String getName() {
 		return name;
@@ -39,6 +45,14 @@ public class Device extends IdEntity {
 
 	public void setGroup(String group) {
 		this.group = group;
+	}
+
+	public final Location getLocation() {
+		return location;
+	}
+
+	public final void setLocation(Location location) {
+		this.location = location;
 	}
 
 }
