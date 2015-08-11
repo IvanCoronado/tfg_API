@@ -18,6 +18,20 @@ public class Count extends IdEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar date;
 
+	@Column(name = "device_id")
+	private Long idDevice;
+
+	public Count() {
+
+	}
+
+	public Count(Double value, Calendar date, Long idDevice) {
+		super();
+		this.value = value;
+		this.date = date;
+		this.idDevice = idDevice;
+	}
+
 	public Double getValue() {
 		return value;
 	}
@@ -32,6 +46,14 @@ public class Count extends IdEntity {
 
 	public void setDate(Calendar date) {
 		this.date = date;
+	}
+
+	public final Long getIdDevice() {
+		return idDevice;
+	}
+
+	public final void setIdDevice(Long idDevice) {
+		this.idDevice = idDevice;
 	}
 
 }
