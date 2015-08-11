@@ -28,7 +28,7 @@ spring:
 
 # Hibernate settings are prefixed with spring.jpa.hibernate.*
   hibernate:
-   ddl-auto: validate
+   ddl-auto: update
    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
   properties:
    hibernate:

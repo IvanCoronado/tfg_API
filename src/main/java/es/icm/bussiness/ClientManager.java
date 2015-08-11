@@ -17,12 +17,13 @@ import es.icm.model.Client;
 @Service
 public class ClientManager {
 	@Autowired
-	private ClientDAO	clientDAO;
+	private ClientDAO clientDAO;
 
 	public List<ClientWithLocationsDTO> getClients() {
-		List<Client> lstClients = clientDAO.findAll();
+		List<Client> lstClients = clientDAO.getClientWithLocations();
 
-		List<ClientWithLocationsDTO> myPattern = lstClients.stream().map(p -> new ClientWithLocationsDTO(p)).collect(Collectors.toList());
+		List<ClientWithLocationsDTO> myPattern = lstClients.stream().map(p -> new ClientWithLocationsDTO(p))
+				.collect(Collectors.toList());
 
 		return myPattern;
 	}
