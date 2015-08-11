@@ -11,17 +11,18 @@ import org.springframework.stereotype.Service;
 import es.icm.dao.ClientDAO;
 import es.icm.dto.in.CreateClientDTO;
 import es.icm.dto.out.ClientDTO;
+import es.icm.dto.out.ClientWithLocationsDTO;
 import es.icm.model.Client;
 
 @Service
 public class ClientManager {
 	@Autowired
-	private ClientDAO clientDAO;
+	private ClientDAO	clientDAO;
 
-	public List<ClientDTO> getClients() {
+	public List<ClientWithLocationsDTO> getClients() {
 		List<Client> lstClients = clientDAO.findAll();
 
-		List<ClientDTO> myPattern = lstClients.stream().map(p -> new ClientDTO(p)).collect(Collectors.toList());
+		List<ClientWithLocationsDTO> myPattern = lstClients.stream().map(p -> new ClientWithLocationsDTO(p)).collect(Collectors.toList());
 
 		return myPattern;
 	}

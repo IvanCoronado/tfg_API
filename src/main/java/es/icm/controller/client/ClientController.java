@@ -19,6 +19,7 @@ import com.wordnik.swagger.annotations.ApiResponses;
 import es.icm.bussiness.ClientManager;
 import es.icm.config.annotation.VersionedRestController;
 import es.icm.dto.out.ClientDTO;
+import es.icm.dto.out.ClientWithLocationsDTO;
 
 @VersionedRestController
 @Api(value = "Client", description = "Información sobre el cliente.")
@@ -26,18 +27,13 @@ import es.icm.dto.out.ClientDTO;
 public class ClientController {
 
 	@Autowired
-	private ClientManager clientManager;
+	private ClientManager	clientManager;
 
 	@RequestMapping(value = "{idClient:\\d+}", method = RequestMethod.GET)
 	@ApiOperation(value = "Devuelve un cliente dado un ID.", notes = "TODO:notes")
-	@ApiResponses(value = {
-			@ApiResponse(code = HttpServletResponse.SC_OK, message = "Found element."),
-			@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
-			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
-			@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")
-	})
-	public ClientDTO getClient(@PathVariable(value = "idClient") Long idClient, HttpServletResponse response)
-			throws IOException {
+	@ApiResponses(value = {@ApiResponse(code = HttpServletResponse.SC_OK, message = "Found element."), @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
+			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."), @ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")})
+	public ClientDTO getClient(@PathVariable(value = "idClient") Long idClient, HttpServletResponse response) throws IOException {
 		try {
 			ClientDTO client = clientManager.findClientById(idClient);
 			return client;
@@ -50,13 +46,9 @@ public class ClientController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ApiOperation(value = "Devuelve una lista de clientes.", notes = "TODO:notes")
-	@ApiResponses(value = {
-			@ApiResponse(code = HttpServletResponse.SC_OK, message = "Found element."),
-			@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
-			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
-			@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")
-	})
-	public List<ClientDTO> getClients() {
+	@ApiResponses(value = {@ApiResponse(code = HttpServletResponse.SC_OK, message = "Found element."), @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
+			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."), @ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")})
+	public List<ClientWithLocationsDTO> getClients() {
 		return clientManager.getClients();
 	}
 

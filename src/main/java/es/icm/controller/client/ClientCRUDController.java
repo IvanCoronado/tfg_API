@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +31,7 @@ public class ClientCRUDController {
 	@Autowired
 	private ClientManager	clientManager;
 
-	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Crea un cliente.", notes = "TODO:notes")
 	@ApiResponses(value = {@ApiResponse(code = HttpServletResponse.SC_CREATED, message = "Element created."), @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
 			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."), @ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")})
@@ -39,7 +40,7 @@ public class ClientCRUDController {
 		return client;
 	}
 
-	@RequestMapping(value = "{idClient:\\d+}", method = RequestMethod.PUT, consumes = "application/json")
+	@RequestMapping(value = "{idClient:\\d+}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Modifica un cliente dado un ID.", notes = "TODO:notes")
 	@ApiResponses(value = {@ApiResponse(code = HttpServletResponse.SC_OK, message = "Found element."), @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
 			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."), @ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")})
