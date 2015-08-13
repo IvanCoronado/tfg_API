@@ -7,21 +7,23 @@ import es.icm.model.Location;
 public class LocationDTO {
 
 	@JsonProperty("id")
-	private Long	id;
+	private Long id;
 	@JsonProperty("name")
-	private String	name;
+	private String name;
 	@JsonProperty("max_capacity")
-	private int		maxCapacity;
+	private int maxCapacity;
 	@JsonProperty("address")
-	private String	address;
+	private String address;
 	@JsonProperty("city")
-	private String	city;
+	private String city;
 	@JsonProperty("latitude")
-	private Double	latitude;
+	private Double latitude;
 	@JsonProperty("longitude")
-	private Double	longitude;
+	private Double longitude;
 	@JsonProperty("is_public")
-	private Boolean	isPublic;
+	private Boolean isPublic;
+	@JsonProperty("description")
+	private String description;
 
 	public LocationDTO(Location location) {
 		super();
@@ -33,6 +35,7 @@ public class LocationDTO {
 		this.latitude = location.getLatitude();
 		this.longitude = location.getLongitude();
 		this.isPublic = location.getIsPublic();
+		this.description = location.getDescription();
 	}
 
 }
