@@ -16,7 +16,7 @@ public interface LocationDAO extends CrudRepository<Location, Long> {
 	@Query("SELECT l FROM Location as l LEFT JOIN FETCH l.devices WHERE l.id = :idLocation")
 	public Location findById(@Param("idLocation") Long id);
 
-	@Query("SELECT l FROM Location as l LEFT JOIN FETCH l.devices")
+	@Query("SELECT DISTINCT l FROM Location as l LEFT JOIN FETCH l.devices")
 	public List<Location> getLocationsWithDevices();
 
 }
