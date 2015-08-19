@@ -41,7 +41,8 @@ public class LocationCRUDController {
 	@ApiOperation(value = "Devuelve la localización requerida con sus dispositivos asociados.", notes = "TODO:notes")
 	@ApiResponses(value = {
 			@ApiResponse(code = HttpServletResponse.SC_OK, message = "Found element."),
-			@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
+			@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid url."),
+			@ApiResponse(code = HttpServletResponse.SC_NOT_FOUND, message = "Invalid parameter."),
 			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
 			@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")
 	})

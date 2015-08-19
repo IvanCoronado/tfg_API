@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import es.icm.model.Device;
 
 @Transactional(rollbackOn = Exception.class)
-public interface DeviceDAO extends CrudRepository<Device, Long> {
+public interface DeviceDAO extends CrudRepository<Device, Long>, DeviceDAOCustom {
 
 }

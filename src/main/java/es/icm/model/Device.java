@@ -1,11 +1,14 @@
 package es.icm.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +25,9 @@ public class Device extends IdEntity {
 	@ManyToOne
 	@JoinColumn(name = "location_id")
 	private Location location;
+
+	@OneToMany(mappedBy = "idDevice")
+	private List<Count> counts;
 
 	public String getName() {
 		return name;
@@ -53,6 +59,14 @@ public class Device extends IdEntity {
 
 	public final void setLocation(Location location) {
 		this.location = location;
+	}
+
+	public final List<Count> getCounts() {
+		return counts;
+	}
+
+	public final void setCounts(List<Count> counts) {
+		this.counts = counts;
 	}
 
 }
