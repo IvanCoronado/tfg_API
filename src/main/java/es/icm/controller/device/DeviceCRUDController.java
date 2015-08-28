@@ -80,7 +80,7 @@ public class DeviceCRUDController {
 		return device;
 	}
 
-	@RequestMapping(value = "locations/{idLocation:\\d+}/devices/{idDevice:\\d+}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "devices/{idDevice:\\d+}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Modifica un dispositivo dado un ID para lalocalización seleccionada.", notes = "TODO:notes")
 	@ApiResponses(
 					value = {

@@ -9,6 +9,9 @@ public class DeviceDTO {
 	@JsonProperty("id")
 	private Long id;
 
+	@JsonProperty("name")
+	private String name;
+
 	@JsonProperty("type_id")
 	private int typeId;
 
@@ -21,6 +24,7 @@ public class DeviceDTO {
 	public DeviceDTO(Device device) {
 		super();
 		this.id = device.getId();
+		this.name = device.getName();
 		this.typeId = device.getType().ordinal();
 		this.typeName = device.getType().name();
 		this.group = device.getGroup();
@@ -56,6 +60,20 @@ public class DeviceDTO {
 
 	public final void setGroup(String group) {
 		this.group = group;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public final String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public final void setName(String name) {
+		this.name = name;
 	}
 
 }
