@@ -30,36 +30,18 @@ public class DeviceDTO {
 		this.group = device.getGroup();
 	}
 
+	/**
+	 * @return the id
+	 */
 	public final Long getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public final void setId(Long id) {
 		this.id = id;
-	}
-
-	public final int getTypeId() {
-		return typeId;
-	}
-
-	public final void setTypeId(int typeId) {
-		this.typeId = typeId;
-	}
-
-	public final String getTypeName() {
-		return typeName;
-	}
-
-	public final void setTypeName(String typeName) {
-		this.typeName = typeName;
-	}
-
-	public final String getGroup() {
-		return group;
-	}
-
-	public final void setGroup(String group) {
-		this.group = group;
 	}
 
 	/**
@@ -74,6 +56,48 @@ public class DeviceDTO {
 	 */
 	public final void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * @return the typeId
+	 */
+	public final int getTypeId() {
+		return typeId;
+	}
+
+	/**
+	 * @param typeId the typeId to set
+	 */
+	public final void setTypeId(int typeId) {
+		this.typeId = typeId;
+	}
+
+	/**
+	 * @return the typeName
+	 */
+	public final String getTypeName() {
+		return typeName;
+	}
+
+	/**
+	 * @param typeName the typeName to set
+	 */
+	public final void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
+	/**
+	 * @return the group
+	 */
+	public final String getGroup() {
+		return group;
+	}
+
+	/**
+	 * @param group the group to set
+	 */
+	public final void setGroup(String group) {
+		this.group = group;
 	}
 
 }

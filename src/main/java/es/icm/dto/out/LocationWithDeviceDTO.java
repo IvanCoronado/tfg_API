@@ -19,4 +19,18 @@ public class LocationWithDeviceDTO extends LocationDTO {
 		}
 	}
 
+	/**
+	 * @return the devices
+	 */
+	public final List<DeviceDTO> getDevices() {
+		return devices;
+	}
+
+	/**
+	 * @param devices the devices to set
+	 */
+	public final void setDevices(List<DeviceDTO> devices) {
+		this.devices = devices;
+	}
+
 }
