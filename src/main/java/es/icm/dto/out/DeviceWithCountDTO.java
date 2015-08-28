@@ -1,6 +1,7 @@
 package es.icm.dto.out;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,6 +18,12 @@ public class DeviceWithCountDTO extends DeviceDTO {
 		for (Count count : p.getCounts()) {
 			counts.add(new CountDTO(count));
 		}
+	}
+
+	public DeviceWithCountDTO(Device device, Long total) {
+		super(device);
+		CountDTO count = new CountDTO(Calendar.getInstance(), total.doubleValue(), device.getId());
+		counts.add(count);
 	}
 
 }

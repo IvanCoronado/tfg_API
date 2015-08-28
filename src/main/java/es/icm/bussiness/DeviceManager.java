@@ -17,4 +17,12 @@ public class DeviceManager {
 		return new DeviceWithCountDTO(device);
 	}
 
+	public DeviceWithCountDTO getStatusCount(Long idDevice) {
+		Device device = deviceDAO.findOne(idDevice);
+
+		Long total = deviceDAO.getActualStatusCount(idDevice);
+
+		return new DeviceWithCountDTO(device, total);
+	}
+
 }

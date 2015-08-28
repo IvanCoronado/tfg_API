@@ -1,11 +1,14 @@
 package es.icm.controller.device;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
@@ -118,9 +121,19 @@ public class DeviceCRUDController {
 			@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")
 	})
 
-	public DeviceWithCountDTO getCount(@PathVariable(value = "idDevice") Long idDevice) {
+	public DeviceWithCountDTO getCount(
+			@PathVariable(value = "idDevice") Long idDevice,
+			@RequestParam(value = "type") String typeDevice,
+			HttpServletResponse response) throws IOException {
+		if (typeDevice.equals("unique")) {
+			return deviceManager.getStatus(idDevice);
+		} else if (typeDevice.equals("count")) {
+			return deviceManager.getStatusCount(idDevice);
+		} else {
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Type must be: 'unique' and 'count'");
+			return null;
+		}
 
-		return deviceManager.getStatus(idDevice);
 	}
 
 }
