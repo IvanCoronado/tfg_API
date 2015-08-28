@@ -12,10 +12,8 @@ import es.icm.dao.DeviceDAO;
 import es.icm.dto.in.CreateDeviceDTO;
 import es.icm.dto.in.TimeLineFilterDTO;
 import es.icm.dto.out.DeviceDTO;
-import es.icm.dto.out.DeviceDTO;
 import es.icm.dto.out.DeviceWithCountDTO;
 import es.icm.dto.out.TimeLineCountDTO;
-import es.icm.model.Device;
 import es.icm.model.Device;
 import es.icm.model.Location;
 
@@ -80,6 +78,7 @@ public class DeviceManager {
 
 		Location mock = new Location();
 		mock.setId(idLocation);
+		device.setLocation(mock);
 
 		Device deviceBD = deviceDAO.save(device);
 		return new DeviceDTO(deviceBD);
@@ -95,10 +94,6 @@ public class DeviceManager {
 		device.setName(deviceInit.getName());
 		device.setGroup(deviceInit.getGroup());
 		device.setType(deviceInit.getType());
-
-		//Set location 
-		Location mock = new Location();
-		mock.setId(idLocation);
 
 		deviceDAO.save(device);
 

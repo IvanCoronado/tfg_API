@@ -1,11 +1,17 @@
 package es.icm.dto.in;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 import es.icm.model.EnumDeviceType;
 
 public class CreateDeviceDTO {
-
+	@NotEmpty
 	private String			name;
+	@NotNull
 	private EnumDeviceType	type;
+	@NotEmpty
 	private String			group;
 
 	/**
