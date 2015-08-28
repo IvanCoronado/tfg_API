@@ -33,8 +33,9 @@ public class DeviceManager {
 	public List<TimeLineCountDTO> getTimeLine(Long idDevice, TimeLineFilterDTO typeDevice) {
 
 		Calendar initDay = (Calendar) typeDevice.getDate().clone();
+		initDay.add(Calendar.DAY_OF_MONTH, +1);
 		Calendar endDay = (Calendar) typeDevice.getDate().clone();
-		endDay.add(Calendar.DAY_OF_MONTH, -typeDevice.getN_days());
+		endDay.add(Calendar.DAY_OF_MONTH, -typeDevice.getN_days() + 1);
 
 		if (typeDevice.getType().equals("unique")) {
 			return deviceDAO.getTimeLine(idDevice, initDay, endDay, typeDevice.getGroup_time());
