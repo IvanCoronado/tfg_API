@@ -2,6 +2,7 @@ package es.icm.bussiness;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -25,6 +26,13 @@ public class DeviceManager {
 	public DeviceWithCountDTO getStatus(Long idDevice) {
 		Device device = deviceDAO.getDeviceWithStatus(idDevice);
 		return new DeviceWithCountDTO(device);
+	}
+
+	public List<DeviceDTO> getDeviceForClientId(Long idClient) {
+		List<Device> deviceList = deviceDAO.getDeviceForClientId(idClient);
+
+		List<DeviceDTO> dtoList = deviceList.stream().map(d -> new DeviceDTO(d)).collect(Collectors.toList());
+		return dtoList;
 	}
 
 	public DeviceWithCountDTO getStatusCount(Long idDevice) {
