@@ -28,14 +28,14 @@ public class ClientManager {
 		return myPattern;
 	}
 
-	public ClientDTO findClientById(Long id) {
+	public ClientWithLocationsDTO findClientById(Long id) {
 		Client client = clientDAO.findById(id);
 
 		if (client == null) {
 			throw new EntityNotFoundException();
 		}
 
-		return new ClientDTO(client);
+		return new ClientWithLocationsDTO(client);
 	}
 
 	public ClientDTO createClient(CreateClientDTO clientInit) {

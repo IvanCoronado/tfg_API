@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import es.icm.model.Client;
 
@@ -14,7 +15,8 @@ public interface ClientDAO extends CrudRepository<Client, Long> {
 
 	public List<Client> findAll();
 
-	public Client findById(Long id);
+	@Query("SELECT c FROM Client as c WHERE c.id = :idClient LEFT JOIN FETCH c.locations as loc WHERE loc.client = :idClient")
+	public Client findById(@Param("idClient") Long idClient);
 
 	@Query("SELECT c FROM Client as c LEFT JOIN FETCH c.locations")
 	public List<Client> getClientWithLocations();
