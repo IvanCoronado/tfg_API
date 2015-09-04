@@ -15,7 +15,7 @@ public interface ClientDAO extends CrudRepository<Client, Long> {
 
 	public List<Client> findAll();
 
-	@Query("SELECT c FROM Client as c WHERE c.id = :idClient LEFT JOIN FETCH c.locations as loc WHERE loc.client = :idClient")
+	@Query("SELECT DISTINCT c FROM Client as c LEFT JOIN FETCH c.locations as loc WHERE loc.client.id = :idClient")
 	public Client findById(@Param("idClient") Long idClient);
 
 	@Query("SELECT c FROM Client as c LEFT JOIN FETCH c.locations")

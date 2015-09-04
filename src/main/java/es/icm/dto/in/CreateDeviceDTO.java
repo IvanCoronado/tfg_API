@@ -8,11 +8,11 @@ import es.icm.model.EnumDeviceType;
 
 public class CreateDeviceDTO {
 	@NotEmpty
-	private String			name;
+	private String name;
 	@NotNull
-	private EnumDeviceType	type;
-	@NotEmpty
-	private String			group;
+	private EnumDeviceType type;
+
+	private String group;
 
 	/**
 	 * @return the name
@@ -22,7 +22,8 @@ public class CreateDeviceDTO {
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public final void setName(String name) {
 		this.name = name;
@@ -36,7 +37,8 @@ public class CreateDeviceDTO {
 	}
 
 	/**
-	 * @param type the type to set
+	 * @param type
+	 *            the type to set
 	 */
 	public final void setType(EnumDeviceType type) {
 		this.type = type;
@@ -50,7 +52,8 @@ public class CreateDeviceDTO {
 	}
 
 	/**
-	 * @param group the group to set
+	 * @param group
+	 *            the group to set
 	 */
 	public final void setGroup(String group) {
 		this.group = group;
