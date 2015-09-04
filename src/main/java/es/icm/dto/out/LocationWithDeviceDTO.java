@@ -27,7 +27,8 @@ public class LocationWithDeviceDTO extends LocationDTO {
 	}
 
 	/**
-	 * @param devices the devices to set
+	 * @param devices
+	 *            the devices to set
 	 */
 	public final void setDevices(List<DeviceDTO> devices) {
 		this.devices = devices;

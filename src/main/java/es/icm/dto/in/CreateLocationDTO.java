@@ -6,21 +6,21 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class CreateLocationDTO {
 	@NotEmpty
-	private String	name;
+	private String name;
 	@NotEmpty
-	private String	description;
+	private String description;
 	@NotNull
-	private Integer	maxCapacity;
+	private Integer maxCapacity;
 	@NotEmpty
-	private String	address;
+	private String address;
 	@NotEmpty
-	private String	city;
+	private String city;
 	@NotNull
-	private Double	latitude;
+	private Double latitude;
 	@NotNull
-	private Double	longitude;
-	@NotNull
-	private Boolean	isPublic;
+	private Double longitude;
+
+	private Boolean isPublic;
 
 	/**
 	 * @return the name
@@ -30,7 +30,8 @@ public class CreateLocationDTO {
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public final void setName(String name) {
 		this.name = name;
@@ -44,7 +45,8 @@ public class CreateLocationDTO {
 	}
 
 	/**
-	 * @param description the description to set
+	 * @param description
+	 *            the description to set
 	 */
 	public final void setDescription(String description) {
 		this.description = description;
@@ -58,7 +60,8 @@ public class CreateLocationDTO {
 	}
 
 	/**
-	 * @param maxCapacity the maxCapacity to set
+	 * @param maxCapacity
+	 *            the maxCapacity to set
 	 */
 	public final void setMaxCapacity(Integer maxCapacity) {
 		this.maxCapacity = maxCapacity;
@@ -72,7 +75,8 @@ public class CreateLocationDTO {
 	}
 
 	/**
-	 * @param address the address to set
+	 * @param address
+	 *            the address to set
 	 */
 	public final void setAddress(String address) {
 		this.address = address;
@@ -86,7 +90,8 @@ public class CreateLocationDTO {
 	}
 
 	/**
-	 * @param city the city to set
+	 * @param city
+	 *            the city to set
 	 */
 	public final void setCity(String city) {
 		this.city = city;
@@ -100,7 +105,8 @@ public class CreateLocationDTO {
 	}
 
 	/**
-	 * @param latitude the latitude to set
+	 * @param latitude
+	 *            the latitude to set
 	 */
 	public final void setLatitude(Double latitude) {
 		this.latitude = latitude;
@@ -114,7 +120,8 @@ public class CreateLocationDTO {
 	}
 
 	/**
-	 * @param longitude the longitude to set
+	 * @param longitude
+	 *            the longitude to set
 	 */
 	public final void setLongitude(Double longitude) {
 		this.longitude = longitude;
@@ -128,7 +135,8 @@ public class CreateLocationDTO {
 	}
 
 	/**
-	 * @param isPublic the isPublic to set
+	 * @param isPublic
+	 *            the isPublic to set
 	 */
 	public final void setIsPublic(Boolean isPublic) {
 		this.isPublic = isPublic;
