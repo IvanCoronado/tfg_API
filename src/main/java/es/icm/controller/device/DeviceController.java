@@ -49,14 +49,16 @@ public class DeviceController {
 
 	@RequestMapping(value = "devices/{idDevice:\\d+}/status", method = RequestMethod.GET)
 	@ApiOperation(value = "Devuelve la última actualización del dispositivo seleccionado.", notes = "TODO:notes")
-	@ApiResponses(
-					value = {
-							@ApiResponse(code = HttpServletResponse.SC_OK, message = "Found element."),
-							@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
-							@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
-							@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")})
-	public DeviceWithCountDTO getstatus(@PathVariable(value = "idDevice") Long idDevice, @RequestParam(value = "type") String typeDevice, HttpServletResponse response)
-			throws IOException {
+	@ApiResponses(value = {
+			@ApiResponse(code = HttpServletResponse.SC_OK, message = "Found element."),
+			@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
+			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
+			@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")
+	})
+	public DeviceWithCountDTO getstatus(
+			@PathVariable(value = "idDevice") Long idDevice,
+			@RequestParam(value = "type") String typeDevice,
+			HttpServletResponse response) throws IOException {
 		if (typeDevice.equals("unique")) {
 			return deviceManager.getStatus(idDevice);
 		} else if (typeDevice.equals("count")) {
@@ -69,18 +71,22 @@ public class DeviceController {
 	}
 
 	@RequestMapping(value = "devices/{idDevice:\\d+}/timeline", method = RequestMethod.GET)
-	@ApiOperation(value = "Devuelve la última actualización del dispositivo seleccionado.", notes = "TODO:notes")
-	@ApiResponses(
-					value = {
-							@ApiResponse(code = HttpServletResponse.SC_OK, message = "Found element."),
-							@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
-							@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
-							@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")})
-	public List<TimeLineCountDTO> getTimeLine(@PathVariable(value = "idDevice") Long idDevice, @ModelAttribute TimeLineFilterDTO filter, HttpServletResponse response)
-			throws IOException {
+	@ApiOperation(value = "Devuelve los datos del dispositivo en un periodo de tiempo.", notes = "TODO:notes")
+	@ApiResponses(value = {
+			@ApiResponse(code = HttpServletResponse.SC_OK, message = "Found element."),
+			@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
+			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
+			@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")
+	})
+	public List<TimeLineCountDTO> getTimeLine(
+			@PathVariable(value = "idDevice") Long idDevice,
+			@ModelAttribute TimeLineFilterDTO filter,
+			HttpServletResponse response) throws IOException {
 		try {
-			Assert.isTrue(filter.getType().equals("unique") || filter.getType().equals("count"), "Type must be: 'unique' and 'count'");
-			Assert.isTrue(filter.getGroup_time().equals("day") || filter.getGroup_time().equals("hour"), "Type must be: 'day' and 'hour'");
+			Assert.isTrue(filter.getType().equals("unique") || filter.getType().equals("count"),
+					"Type must be: 'unique' and 'count'");
+			Assert.isTrue(filter.getGroup_time().equals("day") || filter.getGroup_time().equals("hour"),
+					"Type must be: 'day' and 'hour'");
 
 			return deviceManager.getTimeLine(idDevice, filter);
 

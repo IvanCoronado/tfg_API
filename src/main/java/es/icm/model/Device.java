@@ -14,11 +14,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = TableNames.TABLE_DEVICE)
 public class Device extends IdEntity {
+
 	@Column(name = "name", length = 15)
 	private String name;
+
 	@Column(name = "type_device")
 	@Enumerated(value = EnumType.ORDINAL)
 	private EnumDeviceType type;
+
 	@Column(name = "group_devices", length = 20)
 	private String group;
 

@@ -31,13 +31,14 @@ public class DeviceCRUDController {
 
 	@RequestMapping(value = "devices/{idDevice:\\d+}", method = RequestMethod.GET)
 	@ApiOperation(value = "Devuelve un dispositivo dado su ID.", notes = "TODO:notes")
-	@ApiResponses(
-					value = {
-							@ApiResponse(code = HttpServletResponse.SC_OK, message = "Foundelement."),
-							@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
-							@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
-							@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "Noauthorized.")})
-	public DeviceDTO getDevice(@PathVariable(value = "idDevice") Long idDevice, HttpServletResponse response) throws IOException {
+	@ApiResponses(value = {
+			@ApiResponse(code = HttpServletResponse.SC_OK, message = "Found element."),
+			@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
+			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
+			@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "Noauthorized.")
+	})
+	public DeviceDTO getDevice(@PathVariable(value = "idDevice") Long idDevice, HttpServletResponse response)
+			throws IOException {
 		try {
 			DeviceDTO device = deviceManager.findDeviceById(idDevice);
 			return device;
@@ -49,15 +50,15 @@ public class DeviceCRUDController {
 
 	@RequestMapping(value = "devices/{idDevice:\\d+}", method = RequestMethod.DELETE)
 	@ApiOperation(value = "Elimina un dispositivo dado su ID.", notes = "TODO:notes")
-	@ApiResponses(
-					value = {
-							@ApiResponse(code = HttpServletResponse.SC_OK, message = "Foundelement."),
-							@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
-							@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
-							@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "Noauthorized.")
+	@ApiResponses(value = {
+			@ApiResponse(code = HttpServletResponse.SC_OK, message = "Found element."),
+			@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
+			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
+			@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "Noauthorized.")
 
 	})
-	public void deleteDevice(@PathVariable(value = "idDevice") Long idDevice, HttpServletResponse response) throws IOException {
+	public void deleteDevice(@PathVariable(value = "idDevice") Long idDevice, HttpServletResponse response)
+			throws IOException {
 		try {
 			deviceManager.deleteDevice(idDevice);
 		} catch (EntityNotFoundException e) {
@@ -65,33 +66,41 @@ public class DeviceCRUDController {
 		}
 	}
 
-	@RequestMapping(value = "locations/{idLocation:\\d+}/devices", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value = "Crea un dispositivo para la localizaciónseleccionada.", notes = "TODO:notes")
-	@ApiResponses(
-					value = {
-							@ApiResponse(code = HttpServletResponse.SC_CREATED, message = "Elementcreated."),
-							@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
-							@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
-							@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "Noauthorized.")})
-	public DeviceDTO createDevice(@PathVariable(value = "idLocation") Long idLocation, @Valid @RequestBody CreateDeviceDTO deviceInit, HttpServletResponse response)
-			throws IOException {
+	@RequestMapping(value = "locations/{idLocation:\\d+}/devices",
+					method = RequestMethod.POST,
+					consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "Crea un dispositivo para la localización seleccionada.", notes = "TODO:notes")
+	@ApiResponses(value = {
+			@ApiResponse(code = HttpServletResponse.SC_CREATED, message = "Element created."),
+			@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
+			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
+			@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "No authorized.")
+	})
+	public DeviceDTO createDevice(
+			@PathVariable(value = "idLocation") Long idLocation,
+			@Valid @RequestBody CreateDeviceDTO deviceInit,
+			HttpServletResponse response) throws IOException {
 
 		DeviceDTO device = deviceManager.createDevice(idLocation, deviceInit);
 		return device;
 	}
 
-	@RequestMapping(value = "devices/{idDevice:\\d+}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value = "Modifica un dispositivo dado un ID para lalocalización seleccionada.", notes = "TODO:notes")
-	@ApiResponses(
-					value = {
-							@ApiResponse(code = HttpServletResponse.SC_OK, message = "Foundelement."),
-							@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
-							@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
-							@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "Noauthorized.")
+	@RequestMapping(value = "devices/{idDevice:\\d+}",
+					method = RequestMethod.PUT,
+					consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "Modifica un dispositivo dado su ID.", notes = "TODO:notes")
+	@ApiResponses(value = {
+			@ApiResponse(code = HttpServletResponse.SC_OK, message = "Found element."),
+			@ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid parameter."),
+			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Ups, server error."),
+			@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "Noauthorized.")
 
 	})
-	public DeviceDTO updateLocation(@PathVariable(value = "idLocation") Long idLocation, @PathVariable(value = "idDevice") Long idDevice,
-			@Valid @RequestBody CreateDeviceDTO deviceInit, HttpServletResponse response) throws IOException {
+	public DeviceDTO updateLocation(
+			@PathVariable(value = "idLocation") Long idLocation,
+			@PathVariable(value = "idDevice") Long idDevice,
+			@Valid @RequestBody CreateDeviceDTO deviceInit,
+			HttpServletResponse response) throws IOException {
 
 		try {
 			DeviceDTO device = deviceManager.updateDevice(idDevice, idLocation, deviceInit);

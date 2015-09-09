@@ -11,6 +11,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = TableNames.TABLE_COUNT)
 public class Count extends IdEntity {
+
 	@Column(name = "value")
 	private Double value;
 
