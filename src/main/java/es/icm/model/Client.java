@@ -1,5 +1,6 @@
 package es.icm.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -21,7 +22,7 @@ public class Client extends IdEntity {
 	private String description;
 
 	@OneToMany(mappedBy = "client")
-	private List<Location> locations;
+	private List<Location> locations = new LinkedList<>();
 
 	public Client() {
 		super();

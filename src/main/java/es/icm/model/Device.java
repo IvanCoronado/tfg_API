@@ -1,5 +1,6 @@
 package es.icm.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -30,7 +31,7 @@ public class Device extends IdEntity {
 	private Location location;
 
 	@OneToMany(mappedBy = "idDevice")
-	private List<Count> counts;
+	private List<Count> counts = new LinkedList<>();;
 
 	public String getName() {
 		return name;
