@@ -6,8 +6,8 @@ spring:
 # DataSource settings: set here configurations for the database connection
  datasource:    
   url: jdbc:mysql://localhost:3306/TFG
-  username: root
-  password: admin
+  username: tfg
+  password: leonidas
   driverClassName: com.mysql.jdbc.Driver
  
 # C3P0 connection pool config. 
